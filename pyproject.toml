@@ -1,0 +1,62 @@
+[project]
+name = "gh-testing"
+version = "1.0.0"
+description = "Github testing project"
+authors = [ {name = "sahola"}]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    #"ruff==0.11.11",
+]
+
+#[project.urls]
+#homepage = ""
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+#[tool.setuptools.package-data]
+#"gh-testing.config" = ["data.cfg"]
+
+#[project.scripts]
+#gh-postinstall = "gh-testing.scripts.postinstall:main"
+
+
+[tool.uv]
+default-groups = "all"
+
+[dependency-groups]
+test = [
+]
+dev = [
+    "pytest>=8.0.0, <9.0.0",
+    "pytest-subtests", # To show subtest names in pytest output
+    "ruff",
+    "mypy>=1.8.0,<2.0.0",
+    "coverage>=6.3.2,<7.0.0",
+    "pylint>=3.0.0,<4.0.0",
+]
+
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+log_cli = true
+log_cli_level = "WARN"
+console_output_style = "count"
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+command_line = "-m pytest"
+data_file = "docs/.coverage"
+
+[tool.coverage.html]
+directory = "docs/coverage_html"
+
+[tool.coverage.report]
+show_missing = true
+
+# See mypy.ini for mypy configuration
+# See ruff.toml and ruff-dev.toml for ruff configurations
+# See .pylintrc for pylint configuration
