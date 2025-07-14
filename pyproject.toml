@@ -1,6 +1,5 @@
 [project]
 name = "gh-testing"
-version = "1.0.0"
 description = "Github testing project"
 authors = [ {name = "sahola"}]
 license = "GPL-3.0-or-later"
@@ -9,6 +8,9 @@ requires-python = ">=3.12,<4.0"
 dependencies = [
     #"ruff==0.11.11",
 ]
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
 
 #[project.urls]
 #homepage = ""
