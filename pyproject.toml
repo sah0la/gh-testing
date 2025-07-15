@@ -5,24 +5,23 @@ authors = [ {name = "sahola"}]
 license = "GPL-3.0-or-later"
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
-dependencies = [
-    #"ruff==0.11.11",
-]
+dynamic = ["version"]
+
+[project.urls]
+homepage = "https://github.com/sah0la/gh-testing"
+
+[project.scripts]
+#gh-postinstall = "gh-testing.scripts.postinstall:main"
+gh-testing = "gh_testing.__main__:main"
 
 [tool.setuptools.dynamic]
 version = {file = "VERSION"}
-
-#[project.urls]
-#homepage = ""
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 #[tool.setuptools.package-data]
 #"gh-testing.config" = ["data.cfg"]
-
-#[project.scripts]
-#gh-postinstall = "gh-testing.scripts.postinstall:main"
 
 
 [tool.uv]
