@@ -1,4 +1,4 @@
-name: Unit Tests
+name: On push
 
 on: [push]
 
@@ -9,22 +9,33 @@ jobs:
       matrix:
         python-version: ["3.12", "3.13"]
     steps:
-    - uses: actions/checkout@v4
-  
-    - name: Install uv
-      uses: astral-sh/setup-uv@v6
-      with:
-        version: "0.7.20"
-    
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version-file: "pyproject.toml"
-      
-    - name: Install the project
-      run: uv sync --locked --all-extras --dev
+      - uses: actions/checkout@v4
 
-    - name: Run tests
-      # For example, using `pytest`
-      run: uv run pytest tests
-       
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.7.20"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run ruff check
+        if: success() || failure()
+        run: uv run ruff check
+
+      - name: Run mypy check
+        if: success() || failure()
+        run: uv run mypy --strict src
+
+      - name: Run pylint test
+        if: success() || failure()
+        run: uv run pylint src
+
+      - name: Run unit tests
+        if: success() || failure()
+        run: uv run pytest
