@@ -1,0 +1,32 @@
+name: 'Python/UV Setup'
+description: 'Downloads artifact, installs uv, sets up Python, and installs dependencies.'
+inputs:
+  python-version:
+    description: 'The Python version to set up'
+    required: false
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: "0.8.23"
+
+    # Setup python with overridden value or default. Use 2 tasks to avoid warnings.
+    - name: Set up Matrix Python Version
+      if: ${{ inputs.python-version != '' }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Set up Default Python Version
+      if: ${{ inputs.python-version == '' }}
+      uses: actions/setup-python@v6
+      with:
+        python-version-file: 'pyproject.toml'
+
+    - name: Install dependencies with uv sync
+      shell: bash
+      run: uv sync --locked --all-extras --dev
