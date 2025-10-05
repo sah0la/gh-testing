@@ -1,0 +1,6 @@
+{% extends "!footer.html" %}
+
+{% block extrafooter %}
+<p>{{ project }} v{{ release }}</p>
+{{ super() }}
+{% endblock %}

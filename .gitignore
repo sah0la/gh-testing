@@ -222,9 +222,6 @@ __pycache__
 # UV lock file
 uv.lock
 
-# Generated documentation
-docs/*
-
 # Distribution / packaging build files
 build/
 src/*.egg-info/

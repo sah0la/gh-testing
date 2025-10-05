@@ -1,7 +1,7 @@
 [project]
 name = "gh-testing"
 description = "Github testing project"
-authors = [ {name = "sahola"}]
+authors = [ {name = "sah0la"}]
 license = "GPL-3.0-or-later"
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
@@ -13,6 +13,14 @@ homepage = "https://github.com/sah0la/gh-testing"
 [project.scripts]
 #gh-postinstall = "gh-testing.scripts.postinstall:main"
 gh-testing = "gh_testing.__main__:main"
+
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "setuptools-scm[toml]>=6.2"
+]
+build-backend = "setuptools.build_meta"
+
 
 [tool.setuptools.dynamic]
 version = {file = "VERSION"}
@@ -35,8 +43,16 @@ dev = [
     "pytest-subtests", # To show subtest names in pytest output
     "ruff",
     "mypy>=1.8.0,<2.0.0",
-    "coverage>=6.3.2,<7.0.0",
+    "coverage>=7.0.0,<8.0.0",
     "pylint>=3.0.0,<4.0.0",
+    # Sphinx dependencies for documentation generation
+    "sphinx==8.2.3",
+    "sphinx-lint==1.0.0",
+    "sphinx-rtd-theme==3.0.2",
+    "sphinx_reports==0.9.7", # https://github.com/pyTooling/sphinx-reports
+    "enum-tools[sphinx]==0.13.0", # For better enum support in Sphinx
+    "gitpython==3.1.45",
+    "tomli>=2.0.0,<3.0.0", # For reading pyproject.toml in sphinx conf.py
 ]
 
 
