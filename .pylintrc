@@ -1,0 +1,60 @@
+# Example configurations
+# https://github.com/pylint-dev/pylint/blob/main/pylintrc
+
+[MAIN]
+# Minimum supported python version
+py-version = 3.12.0
+#reports=yes
+
+load-plugins=
+    pylint.extensions.docparams,
+    pylint.extensions.docstyle
+
+fail-under=10.0
+
+[DESIGN]
+max-attributes=10
+
+
+[MESSAGES CONTROL]
+# Disable the message, report, category or checker with the given id(s)
+disable=relative-beyond-top-level, # Attempted relative import beyond top-level package
+enable=E1102
+
+
+[FORMAT]
+# Maximum number of characters on a single line.
+max-line-length=200
+
+# Regexp for a line that is allowed to be longer than the limit.
+ignore-long-lines=^\s*(# )?<?https?://\S+>?$
+disable=logging-fstring-interpolation
+
+#indent-string='    '
+# Number of spaces of indent required inside a hanging or continued line.
+indent-after-paren=4
+
+[LOGGING]
+logging-modules=logging
+logging-format-style=new
+
+
+[IMPORTS]
+# List of modules that can be imported at any level, not just the top level one.
+
+[BASIC]
+# These requires pylint.extensions.docparams,pylint.extensions.docstyle
+default-docstring-type=sphinx
+accept-no-param-doc=false
+
+# Does not resolve the correct exception when it is catched and re-reaised.
+# Does not check the private methods.
+accept-no-raise-doc=false
+
+accept-no-yields-doc=false
+
+# Disable: Unlike pydoclint, pylint requires return doc for @override methods too.
+accept-no-return-doc=true
+
+# An empty string here means all methods will be checked for docstrings.
+#no-docstring-rgx=""
