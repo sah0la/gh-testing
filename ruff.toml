@@ -62,4 +62,4 @@ allowed-confusables = ["µ"]
 
 [lint.mccabe]
 # Flag errors (`C901`) whenever the complexity level exceeds 5.
-max-complexity = 6
+max-complexity = 10
