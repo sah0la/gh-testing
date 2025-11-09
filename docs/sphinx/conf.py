@@ -19,7 +19,7 @@ project_root = Path(__file__).parent.parent.parent
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 templates_path = ['_templates']
-html_extra_path = ['../_build/htmlcov']  # coverage html report
+html_extra_path = ['../_build/extra']  # coverage html report
 
 # https://www.sphinx-doc.org/en/master/usage/extensions/#third-party-extensions
 extensions = [

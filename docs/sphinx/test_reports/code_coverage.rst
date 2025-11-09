@@ -8,4 +8,4 @@ Code coverage
 Detailed Coverage Report
 ------------------------
 
-`View detailed coverage report <../_static/index.html>`_
+`View detailed coverage report <../htmlcov/index.html>`_
