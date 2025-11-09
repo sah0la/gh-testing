@@ -66,13 +66,16 @@ console_output_style = "count"
 source = ["src"]
 branch = true
 command_line = "-m pytest"
-data_file = "docs/.coverage"
+data_file = "docs/_build/.coverage"
 
 [tool.coverage.html]
-directory = "docs/coverage_html"
+directory = "docs/_build/extra/htmlcov"
 
 [tool.coverage.report]
 show_missing = true
+
+[tool.coverage.json]
+output = "docs/_build/coverage.json"
 
 # See mypy.ini for mypy configuration
 # See ruff.toml and ruff-dev.toml for ruff configurations
