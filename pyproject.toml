@@ -41,7 +41,7 @@ test = [
 dev = [
     "pytest>=8.0.0, <9.0.0",
     "pytest-subtests", # To show subtest names in pytest output
-    "ruff",
+    "ruff>=0.11.11,<1.0.0",
     "mypy>=1.8.0,<2.0.0",
     "coverage>=7.0.0,<8.0.0",
     "pylint>=3.0.0,<4.0.0",
@@ -52,7 +52,6 @@ dev = [
     "sphinx_reports==0.9.7", # https://github.com/pyTooling/sphinx-reports
     "enum-tools[sphinx]==0.13.0", # For better enum support in Sphinx
     "gitpython==3.1.45",
-    "tomli>=2.0.0,<3.0.0", # For reading pyproject.toml in sphinx conf.py
 ]
 
 

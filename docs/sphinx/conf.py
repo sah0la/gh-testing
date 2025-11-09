@@ -3,14 +3,12 @@
 For the full list of built-in configuration values, see the documentation:
 https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
+import tomllib as toml
 from pathlib import Path
 from typing import IO, BinaryIO  # noqa: F401
 
-import tomli
-
 from project_meta.git_info import GitInfo
 from project_meta.project_info_pkg import ProjectInfoPkg
-from project_meta.project_info_pyproject import ProjectInfoPyProject
 
 # Get the path to the project's root folder
 project_root = Path(__file__).parent.parent.parent
@@ -42,7 +40,7 @@ autosummary_generate = True
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 with open(file=project_root / "pyproject.toml", mode="rb") as file_pyproject:  # type: BinaryIO
-    pyproject_data = tomli.load(file_pyproject)
+    pyproject_data = toml.load(file_pyproject)
 
 # project_info = ProjectInfoPyProject(project_root=project_root, pyproject_data=pyproject_data)
 project_info = ProjectInfoPkg()
