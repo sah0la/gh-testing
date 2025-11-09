@@ -1,33 +1,26 @@
-name: Unit Tests
+name: Unit tests
 
 on:
   push:
-    branches: [main]
   workflow_dispatch: # Run this workflow manually from the Actions tab
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read # For checkout
-  pages: write # For actions/deploy-pages
-  id-token: write # For authentication with GitHub Pages
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# On new push, cancel any in-progress runs of this workflow on the same branch.
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
       matrix:
         python-version: ["3.12", "3.13"]
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Shared Python/UV Setup
+      - name: Shared Python/UV setup
         uses: ./.github/actions/setup-environment
         with:
           python-version: ${{ matrix.python-version }}
